@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--  属性里不能用mustache语法，得用v-bind: 语法糖,可以直接写: -->
+  <!--  <img src="{{}}}" alt="">-->
+  <!--  <img v-bind:src="imgURL" alt="">-->
+  <!--  <a v-bind:href="aHref">百度一下</a>-->
+  <img :src="imgURL" alt="">
+  <a :href="aHref">百度一下</a>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      imgURL: "https://img.alicdn.com/bao/uploaded/i3/1990567810/TB2nUbpablmpuFjSZFlXXbdQXXa_!!1990567810.jpg_300x1000Q50s50.jpg_.webp",
+      aHref: "https://www.baidu.com",
+    }
+  })
+</script>
+
+</body>
+</html>

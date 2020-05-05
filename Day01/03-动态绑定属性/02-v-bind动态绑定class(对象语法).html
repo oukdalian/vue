@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active {
+      color: red;
+    }
+
+    .line {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <!--  <h2 :class="active">{{message}}</h2>-->
+  <!--  语法:<h2 :class="{key(类名1):value(布尔值), 类名2:false}"></h2>-->
+  <!--  注意:这里的key不用加引号，value如果不是变量名的话就必须加引号否则就会被当成变量去vue对象里寻找，找不到的话就会出错 -->
+  <!--  <h2 :class="{active:isActive, line: isLine}">{{message}}</h2>-->
+  <!--  如果原来已经定义class了也不会覆盖，会追加,比如下面的title不会被覆盖-->
+  <!--  <h2 class="title" :class="{active:isActive, line: isLine}">{{message}}</h2>-->
+  <!--  class里面也可以传入方法,这个时候方法得加上小括号，@click可以不用加小括号-->
+  <h2 :class="getClasses()">{{message}}</h2>
+  <button @click="btnClick">点我变色</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello World!",
+      isActive: true,
+      isLine: false
+    },
+    methods: {
+      btnClick: function () {
+        this.isActive = !this.isActive;
+        this.isLine = !this.isLine;
+      },
+      getClasses: function () {
+        // 返回一个对象
+        return {active: this.isActive, line: this.isLine}
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Title</title>
+  <style>
+    .active {
+      color: red;
+    }
+
+    .line {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <!--  <h2 class="title" :class="{active:isActive, line:isLine}">{{message}}</h2>-->
+  <!--  数组的时候isActive的值只能是字符串，所以不能写成true而不加引号-->
+  <!--  <h2 class="title" :class="[true, false]">{{message}}</h2>-->
+  <h2 class="title" :class="[isActive, isLine]">{{message}}</h2>
+  <!--  <h2 class="title" :class="getClasses()">{{message}}</h2>-->
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello World!",
+      // isActive: true,
+      // isLine: true
+      isActive: "active",
+      isLine: "line"
+    },
+    methods: {
+      getClasses: function () {
+        return [this.isActive, this.isLine]
+      }
+    }
+  })
+</script>
+</body>
+</html>

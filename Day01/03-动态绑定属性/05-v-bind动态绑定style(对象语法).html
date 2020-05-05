@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<!-- 语法:<h2 :class="{key(类名1):value(布尔值), 类名2:false}"></h2>-->
+<!-- 语法:<h2 :style="{key(属性1):value(属性值1), key(属性2):value(属性值2)}"></h2>-->
+<div id="app">
+  <!-- 1.这里的fontSize用驼峰命名可以，用中划线连接也可以,用中划线的时候，key也要用引号引起来 -->
+  <!-- 2.这里的key不用加引号，value如果不是变量名的话就必须加引号否则就会被当成变量去vue对象里寻找，找不到的话就会出错 -->
+  <!--  OK:<h2 :style="{fontSize:'50px'}">{{message}}</h2>-->
+  <!--  OK:<h2 :style="{'font-size':'50px'}">{{message}}</h2>-->
+  <!-- NG: <h2 :style="{fontSize:50px}">{{message}}</h2>-->
+  <!--  因为finalSize没有加引号则会去vue的data里去找-->
+  <h2 :style="{fontSize:finalSize + 'px', backgroundColor:finalColor}">{{message}}</h2>
+  <!--  也可以把style里的东西抽到一个方法里 -->
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello World!",
+      finalSize: 100,
+      finalColor: 'red'
+    }
+  })
+</script>
+
+</body>
+</html>
