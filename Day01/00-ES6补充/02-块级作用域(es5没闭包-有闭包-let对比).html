@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<script>
+
+  // 3.没有块级作用域引起的问题:for的块级
+  // var btns = document.getElementsByTagName("button")
+  // for (var i = 0; i < btns.length; i++) {
+  //   btns[i].addEventListener("click", function () {
+  //     console.log("第" + i + "个按钮被点击");
+  //   })
+  // }
+  // 以上代码执行后，不管点哪个按钮最终都会被输出"第5个按钮被点击"
+  // 上面的代码相当于
+  var i;
+  {
+    i = 0
+    btns[i].addEventListener("click", function () {
+      console.log("第" + i + "个按钮被点击");
+    })
+  }
+  {
+    i = 1
+    btns[i].addEventListener("click", function () {
+      console.log("第" + i + "个按钮被点击");
+    })
+  }
+  {
+    i = 2
+    btns[i].addEventListener("click", function () {
+      console.log("第" + i + "个按钮被点击");// 执行的时候才会去找i
+    })
+  }
+
+  // 解决方案，函数闭包
+  // 为什么函数闭包可以解决问题，因为函数是一个作用域
+  // var btns = document.getElementsByTagName("button")
+  // for (var i = 0; i < btns.length; i++) {
+  //   (function (i) {
+  //     btns[i].addEventListener("click", function () {
+  //       console.log("第" + i + "个按钮被点击");
+  //     })
+  //   })(i)
+  // }
+  // 代码相当于
+  var i;
+  (function (i) {
+    // 因为函数有块作用域，这个i和上面的i不一样
+    btns[i].addEventListener("click", function () {
+      console.log("第" + i + "个按钮被点击");
+    })
+  })(0)
+  (function (i) {
+    i = 1
+    btns[i].addEventListener("click", function () {
+      console.log("第" + i + "个按钮被点击");
+    })
+  })(1)
+  (function (i) {
+    i = 2
+    btns[i].addEventListener("click", function () {
+      console.log("第" + i + "个按钮被点击");// 执行的时候才会去找i
+    })
+  })(2)
+
+  // 解决方案2 ES6
+  const btns = document.getElementsByTagName("button")
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () {
+      console.log("第" + i + "个按钮被点击");
+    })
+  }
+
+</script>
+
+</body>
+</html>
