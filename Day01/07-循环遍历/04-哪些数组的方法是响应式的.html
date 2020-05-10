@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="item in letters">{{item}}</li>
+  </ul>
+  <button @click="btnClick">按钮</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      letters: ["a", "b", "c", "d"]
+    },
+    methods: {
+      btnClick() {
+        // 相应式
+        // 1. push:从后面加入
+        // this.letters.push("aaa")
+        // this.letters.push("aaa", "bbb", "ccc")
+        // 2. pop:删除数组中的最后一个元素
+        // this.letters.pop()
+        // 3. shift:删除数组中的第一个元素
+        // this.letters.shift()
+        // 4. unshift:在数组的最前面添加元素
+        // this.letters.unshift("aaa")
+        // this.letters.unshift("aaa", "bbb", "ccc")
+        // 5. splice:删除元素/插入元素/替换元素
+        // 删除元素：第二个元素传入删除几个元素,如果不传的话，则一直删除到最后
+        // this.letters.splice(1, this.letters.length - 1)
+        // 替换元素:第二个元素传入替换几个元素,后面是要替换的元素
+        // this.letters.splice(1, 2, "h", "i")
+        // 插入元素:第二个元素传入0， 后面时要添加的元素
+        // this.letters.splice(1, 0, "l")
+        // 也可以删除插入替换一起做
+        // 6. sort排序
+        // this.letters.sort()
+        // 7. reverse反转
+        // this.letters.reverse()
+        // 8. Vue的方法
+        // set(要修改的对象， 索引值， 修改后的值)
+        Vue.set(this.letters, 0, "bbbbb")
+
+        // 非相应式
+        // 1. 通过索引值修改元素
+        // this.letters[0] = "bbbbb"
+      }
+    }
+  })
+</script>
+
+</body>
+</html>
