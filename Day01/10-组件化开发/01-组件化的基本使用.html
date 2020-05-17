@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  {{message}}
+  <!-- 3. 使用组件 -->
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+  <my-cpn></my-cpn>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  // ES6的字符串，除了单引号('')，双引号("")，还增加了(``)
+  // ``可以跨行相当于Python的"""
+
+  // 1. 创建组件构造器对象
+  const cpnC = Vue.extend({
+    // template:自定义组件的模板
+    template: `
+    <div>
+      <h2>我是标题</h2>
+      <p>我是内容，哈哈哈</p>
+      <p>我是内容，呵呵呵</p>
+    </div>
+    `
+  })
+
+  // 2. 注册组件（全局组件）
+  // 第一个参数：注册组件的标签名
+  // 第二个参数：组件构造器对象
+  Vue.component("my-cpn", cpnC)
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello World!"
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>Parent:{{message}}</h2>
+  <h2>Child:</h2>
+  <cpn :cmovies="movies" :cmessage="message"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <ul>
+      <li v-for="item in cmovies">{{item}}</li>
+    </ul>
+    <h2>{{cmessage}}</h2>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: "#cpn",
+    // props定义方法1：数组
+    // props: ["cmovies", "cmessage"],
+    // props定义方法2：对象
+    props: {
+      // 基础的类型检查（null 匹配任何类型）
+      // cmovies: Array,
+      // cmessage: String
+      // 多个可能的值类型
+      // cmessage : [String ,Number]
+      cmovies: {
+        // 除了基础类型也可以是自定义对象
+        type: Array,
+        default() {
+          // 如果是对象或者数组的或必须是从一个工厂函数中获取。但是2.6没有报错
+          return []
+        }
+      },
+      cmessage: {
+        type: String,
+        default: "aaaaaaaaaaa", // 默认值
+        required: true, // 必须验证
+        validator(value) {
+          // 自定义验证
+          return ["success", "warning", "danger"].indexOf(value) !== -1
+        }
+      }
+    }
+  }
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "success",
+      movies: ["海贼王", "灌篮高手", "足球小将"]
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+</body>
+</html>

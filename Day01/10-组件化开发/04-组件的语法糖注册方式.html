@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  {{message}}
+  <cpn1></cpn1>
+  <cpn2></cpn2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  // 其实还是调用了Vue.extend，只不过这样写比较简便。语法糖
+  // Vue2.x推荐使用语法糖
+  Vue.component("cpn1", {
+    template: `
+      <div>
+        <h2>我是标题1</h2>
+        <p>我是内容，哈哈哈</p>
+      </div>
+    `
+  })
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello World!"
+    },
+    components: {
+      cpn2: {
+        template: `
+        <div>
+          <h2>我是标题2</h2>
+          <p>我是内容，哈哈哈</p>
+        </div>
+      `
+      }
+    }
+  })
+</script>
+</body>
+</html>

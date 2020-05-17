@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    自定义事件的流程：
+    1.在子组件中，通过$emit()来发射事件
+    2.在父组件中，通过v-on来监听子组件事件。
+-->
+<div id="app">
+  {{message}}
+  <!-- 子组件的自定义事件，默认参数就是发射时传的参数。因为不是浏览器的事件，所以不是默认$event -->
+  <cpn @btn-click="cpnClick"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <button v-for="item in categories" @click="btnClick(item)">{{item.name}}</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: "#cpn",
+    data: function () {
+      return {
+        categories: [
+          {id: "aaa", name: "热门推荐"},
+          {id: "bbb", name: "手机数码"},
+          {id: "ccc", name: "家用家电"},
+          {id: "ddd", name: "电脑办公"},
+        ]
+      }
+    },
+    methods: {
+      btnClick(item) {
+        // 第一个参数是，发射事件的名称
+        // 第二个参数是，发射事件的参数
+        // 也可以加多个参数用来传递想传递的值，只要cpnclick中也有对应的参数进行接受就好。
+        this.$emit("btn-click", item, "abc")
+      }
+    }
+  }
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello World!"
+    },
+    components: {
+      cpn
+    },
+    methods: {
+      cpnClick(item, x) {
+        console.log(x);
+        console.log(item.id + ":" + item.name);
+      }
+    }
+  })
+</script>
+</body>
+</html>
