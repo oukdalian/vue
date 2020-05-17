@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    父组件的data传入到子组件的text框
+    子组件修改值再传给父组件
+-->
+<div id="app">
+  {{message}}
+  <cpn :number1="num1" :number2="num2" @num1change="num1change" @num2change="num2change"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <p>props-num1:{{number1}}</p>
+    <p>data-num1:{{dnumber1}}</p>
+    <!-- 如果把props的值直接绑定在v-model上进行修改的话，会报警告 -->
+    <!-- 并且这样值会混乱，vue不建议这么做 -->
+    <input type="text" v-model="dnumber1">
+    <p>props-num2:{{number2}}</p>
+    <p>data-num2:{{dnumber2}}</p>
+    <input type="text" v-model="dnumber2">
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn = {
+    template: "#cpn",
+    props: {
+      number1: Number,
+      number2: Number
+    },
+    data() {
+      return {
+        // 用props的值来初期化data
+        dnumber1: this.number1,
+        dnumber2: this.number2
+      }
+    },
+    watch: {
+      dnumber1(newValue) {
+        // 1.将input中的value赋值到number中
+        this.dnumber1 = parseFloat(newValue)
+        // 2.为了让父组件可以修改值，发出一个事件
+        this.$emit("num1change", this.dnumber1)
+      },
+      dnumber2(newValue) {
+        this.dnumber2 = parseFloat(newValue)
+        this.$emit("num2change", this.dnumber2)
+      }
+    }
+  }
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello World! watch",
+      num1: 1,
+      num2: 2
+    },
+    components: {
+      cpn
+    },
+    methods: {
+      num1change(value) {
+        this.num1 = value
+      },
+      num2change(value) {
+        this.num2 = value
+      }
+    }
+  })
+</script>
+</body>
+</html>

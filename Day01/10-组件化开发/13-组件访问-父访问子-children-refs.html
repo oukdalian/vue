@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  {{message}}
+  <cpn ref="a"></cpn>
+  <cpn ref="b"></cpn>
+  <cpn ref="c"></cpn>
+  <button @click="btnClick">按钮</button>
+</div>
+
+<template id="cpn">
+  <div>
+    我是子组件
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello World!"
+    },
+    components: {
+      cpn: {
+        template: "#cpn",
+        methods: {
+          showMessage() {
+            console.log("------------showMessage----------");
+          }
+        }
+      }
+    },
+    methods: {
+      btnClick() {
+        console.log("btnClick");
+        // $children返回子组件的数组，一般用在获取所有子组件的时候使用
+        console.log(this.$children);
+        // this.$children[0].showMessage()
+        // $refs:必须在子组件引用的时候定义ref属性  --> 一般用这个
+        // 返回一个对象（key:ref属性，value:子组件）
+        // 如果没有ref属性，在返回对象里就没有
+        this.$refs["b"].showMessage()
+      }
+    }
+  })
+</script>
+</body>
+</html>
