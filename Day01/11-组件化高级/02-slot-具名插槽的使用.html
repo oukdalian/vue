@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  {{message}}
+  <cpn>
+    <!-- 如果不写slot的话，只会替换没有名字的slot，如果没有有名字的slot的话，就什么也不替换 -->
+    <!--    <button slot="left">返回</button>-->
+    <!-- 下面是新的写法 template + v-slot-->
+    <template v-slot:left>
+      <button>
+        返回
+      </button>
+    </template>
+  </cpn>
+  <cpn>
+    <i slot="center">标题</i>
+  </cpn>
+  <cpn>
+    <span slot="right">前进</span>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <slot name="left">左边</slot>
+    <slot name="center">中间</slot>
+    <slot name="right">右边</slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: "#cpn",
+  }
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello World!"
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+
+</body>
+</html>
