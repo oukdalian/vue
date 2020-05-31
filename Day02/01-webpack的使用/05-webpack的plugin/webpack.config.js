@@ -1,4 +1,7 @@
 const path = require("path")
+const webpack = require("webpack")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const uglifyJsWebpackPlugin = require("uglifyjs-webpack-plugin")
 
 module.exports = {
   entry: "./src/main.js",
@@ -6,7 +9,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     // 为了在图片的url前面加上路径，最后发布时，index.html也会打包在dist里，所以这个路径设置要删掉
-    publicPath: "dist/"
+    // publicPath: "dist/"
   },
   module: {
     rules: [
@@ -69,7 +72,31 @@ module.exports = {
             presets: ['es2015']
           }
         }
+      },
+      {
+        // npm install --save-dev babel-loader@7 babel-core babel-preset-es2015
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader',
+        }
       }
     ],
   },
+  resolve: {
+    extensions: ['.js', '.css', '.vue'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' webpack 1 用
+    }
+  },
+  plugins: [
+    new webpack.BannerPlugin("最终版权归aaa所有"),
+    new HtmlWebpackPlugin({
+      template: "index.html"
+    }),
+    new uglifyJsWebpackPlugin()
+  ],
+  devServer: {
+    contentBase: "./dist",
+    inline: true
+  }
 }
