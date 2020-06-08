@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // resolve("Hello World")
+      reject("Hello Error")
+    }, 1000)
+    // }).then(函数1，函数2) 函数1：resolve 函数2：reject
+  }).then(data => {
+      // 成功的时候
+      console.log(data);
+    },
+    error => {
+      // 失败的时候
+      console.log(error);
+    }
+  )
+</script>
+</body>
+</html>

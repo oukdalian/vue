@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 1.使用setTimeout
+  // setTimeout(() => {
+  //     console.log("Hello World")
+  //   }, 1000
+  // )
+
+  // 2. 回调地狱:层层嵌套，不好阅读
+  // setTimeout(() => {
+  //     console.log("Hello World")
+  //     setTimeout(() => {
+  //         console.log("Hello Vue.js")
+  //         setTimeout(() => {
+  //             console.log("Hello Python")
+  //           }, 1000
+  //         )
+  //       }, 1000
+  //     )
+  //   }, 1000
+  // )
+
+  // 3.promise实现(链式编程思想)
+  // new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //       resolve()
+  //     }, 1000
+  //   )
+  // }).then(() => {
+  //   console.log("Hello World")
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //         resolve()
+  //       }, 1000
+  //     )
+  //   })
+  // }).then(() => {
+  //   console.log("Hello Vue.js")
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //         resolve()
+  //       }, 1000
+  //     )
+  //   })
+  // }).then(() => {
+  //   console.log("Hello Python")
+  // })
+
+  // 什么情况下使用promise?
+  // 一般情况下是有异步操作时，使用Promise对这个异步操作进行封装
+  // new --> 构造函数（1.保存了一些状态信息 2.执行传入的函数）
+  // 在执行传入的回调函数时，会传入两个参数，resolve ,reject本身又是函数
+  // new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     // resolve("Hello World")
+  //     reject("Hello Error")
+  //   }, 1000)
+  // }).then(data => {
+  //   // 成功的时候执行resolve()
+  //   console.log(data);
+  // }).catch(error => {
+  //   // 失败的时候执行catch()
+  //   console.log(error);
+  // })
+</script>
+</body>
+</html>
