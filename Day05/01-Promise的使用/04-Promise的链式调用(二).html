@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // new Promise(resolve =>{})的简写方式：
+  // Promise.resolve()
+  // new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //       resolve("aaa")
+  //     }, 1000
+  //   )
+  // }).then(res => {
+  //   console.log(res, "第一层的10行处理代码")
+  //   return Promise.resolve(res + "111")
+  // }).then(res => {
+  //   console.log(res, "第二层的10行处理代码")
+  //   return Promise.resolve(res + "222")
+  // }).then(res => {
+  //   console.log(res, "第三层的10行处理代码")
+  // })
+
+  // 省略Promise.resolve的写法
+  // new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //       resolve("aaa")
+  //     }, 1000
+  //   )
+  // }).then(res => {
+  //   console.log(res, "第一层的10行处理代码")
+  //   return res + "111"
+  // }).then(res => {
+  //   console.log(res, "第二层的10行处理代码")
+  //   return res + "222"
+  // }).then(res => {
+  //   console.log(res, "第三层的10行处理代码")
+  // })
+
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("aaa")
+      }, 1000
+    )
+  }).then(res => {
+    console.log(res, "第一层的10行处理代码")
+    return Promise.reject("error message")// 会直接走到catch。也可以用throw
+  }).then(res => {
+    console.log(res, "第二层的10行处理代码")
+    return res + "222"
+  }).then(res => {
+    console.log(res, "第三层的10行处理代码")
+  }).catch(res => {
+    console.log(res);
+  })
+
+</script>
+</body>
+</html>
