@@ -21,7 +21,7 @@
     },
     methods: {
       btnClick() {
-        // 相应式
+        // 响应式
         // 1. push:从后面加入
         // this.letters.push("aaa")
         // this.letters.push("aaa", "bbb", "ccc")
@@ -35,25 +35,35 @@
         // 5. splice:删除元素/插入元素/替换元素
         // 删除元素：第二个元素传入删除几个元素,如果不传的话，则一直删除到最后
         // this.letters.splice(1, this.letters.length - 1)
-        // 替换元素:第二个元素传入替换几个元素,后面是要替换的元素
+        // 替换元素:第二个元素传入替换几个元素,后面是要替换的元素(其实就是先删除2个元素，然后把后面跟上的元素插入)
         // this.letters.splice(1, 2, "h", "i")
-        // 插入元素:第二个元素传入0， 后面时要添加的元素
+        // 插入元素:第二个元素传入0， 后面时要添加的元素（第二个元素是0，代表就是删掉0个元素，然后把后面跟上的元素插入）
         // this.letters.splice(1, 0, "l")
         // 也可以删除插入替换一起做
         // 6. sort排序
         // this.letters.sort()
         // 7. reverse反转
         // this.letters.reverse()
-        // 8. Vue的方法
+        // 8. Vue的方法（为了解决下面的非响应式，当然用上面的方法更好）
         // set(要修改的对象， 索引值， 修改后的值)
         Vue.set(this.letters, 0, "bbbbb")
 
-        // 非相应式
+        // 非响应式
         // 1. 通过索引值修改元素
         // this.letters[0] = "bbbbb"
       }
     }
   })
+
+  // 可变参数 ...
+  function sum(...items){
+    let sum = 0
+    for(let item of items) {
+        sum+=item
+    }
+    return sum
+  }
+  console.log(sum(10,20,30))
 </script>
 
 </body>

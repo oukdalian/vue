@@ -11,14 +11,14 @@
     <li v-for="item in info">{{item}}</li>
   </ul>
 
-  <!-- 2.获取key和value的格式:(key, value) -->
+  <!-- 2.获取key和value的格式:(value, key) -->
   <ul>
-    <li v-for="(key, value) in info">{{key}}:{{value}}</li>
+    <li v-for="(value, key) in info">{{key}}:{{value}}</li>
   </ul>
 
-  <!-- 3.获取key和value和index的格式:(key, value, index) -->
+  <!-- 3.获取key和value和index的格式:(value, key, index) -->
   <ul>
-    <li v-for="(key, value, index) in info">{{index}}.{{key}}:{{value}}</li>
+    <li v-for="(value, key, index) in info">{{index}}.{{key}}:{{value}}</li>
   </ul>
 </div>
 
