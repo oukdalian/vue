@@ -8,6 +8,7 @@
 <div id="app">
   {{message}}
   <cpn>
+    <!-- 父组件替换插槽的标签，但是内容有子组件提供  -->
     <!-- 目的是获取子组件中的pLanguages -->
     <!-- slot-scope相当于是定义了一个获取子组件数据的对象 -->
     <template slot-scope="slot">

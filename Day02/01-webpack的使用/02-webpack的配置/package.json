@@ -1,17 +1,19 @@
 {
-  "name": "meetwebpack",
-  "version": "1.0.0",
-  "description": "",
-  "main": "webpack.config.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "css-loader": "^3.5.3",
-    "style-loader": "^1.2.1",
-    "webpack": "^3.6.0"
-  }
+    // 这个文件是通过 npm init 创建出来的
+    // 本地安装webpack（不是全局）,则执行命令 npm install webpack@3.6.0 --save-dev
+    "name": "meetwebpack",
+    "version": "1.0.0",
+    "description": "",
+    "main": "webpack.config.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "css-loader": "^3.5.3",
+        "style-loader": "^1.2.1",
+        "webpack": "^3.6.0"
+    }
 }

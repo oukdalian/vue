@@ -8,7 +8,7 @@
 <div id="app">
   {{message}}
   <cpn>
-    <!-- 如果不写slot的话，只会替换没有名字的slot，如果没有有名字的slot的话，就什么也不替换 -->
+    <!-- 如果不写slot的话，只会替换没有名字的slot，没有名字的slot是多个的话，所有的都被替换。如果没有有名字的slot的话，就什么也不替换 -->
     <!--    <button slot="left">返回</button>-->
     <!-- 下面是新的写法 template + v-slot-->
     <template v-slot:left>
